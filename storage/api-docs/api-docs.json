@@ -1,0 +1,216 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "depenses API",
+        "description": "API to manage depenses",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/depenses": {
+            "get": {
+                "tags": [
+                    "Depenses"
+                ],
+                "summary": "Get all depenses",
+                "description": "Retrieve a list of all depenses",
+                "operationId": "16756ea08041b2cfda5e27be7d889975",
+                "responses": {
+                    "200": {
+                        "description": "List of depenses"
+                    },
+                    "404": {
+                        "description": "No depenses found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctumAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Depenses"
+                ],
+                "summary": "Create a new depense",
+                "description": "Create a new depense with provided amount and date and Description",
+                "operationId": "ba8e8d21abf1566722374cff30d2bec3",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "amount",
+                                    "date",
+                                    "Description"
+                                ],
+                                "properties": {
+                                    "amount": {
+                                        "type": "number"
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "Description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "depense created"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctumAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/depenses/{depense}": {
+            "get": {
+                "tags": [
+                    "Depenses"
+                ],
+                "summary": "Get a depense",
+                "description": "Retrieve a depense by its ID",
+                "operationId": "aaba4c432f6b1414ebfb9d0a8d98aea1",
+                "parameters": [
+                    {
+                        "name": "depense",
+                        "in": "path",
+                        "description": "ID of the depense",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Depense found"
+                    },
+                    "400": {
+                        "description": "Depense not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctumAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Depenses"
+                ],
+                "summary": "Update a depense",
+                "description": "Update a depense by its ID",
+                "operationId": "ed2149e6a15029ac0d6e36958e57095d",
+                "parameters": [
+                    {
+                        "name": "depense",
+                        "in": "path",
+                        "description": "ID of the depense",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "amount",
+                                    "date",
+                                    "Description"
+                                ],
+                                "properties": {
+                                    "amount": {
+                                        "type": "number"
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "Description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Depense updated"
+                    },
+                    "400": {
+                        "description": "Depense not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctumAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Depenses"
+                ],
+                "summary": "Delete a depense",
+                "description": "Delete a depense by its ID",
+                "operationId": "09b932219194903adc409d2ec892be81",
+                "parameters": [
+                    {
+                        "name": "depense",
+                        "in": "path",
+                        "description": "ID of the depense",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Depense deleted"
+                    },
+                    "404": {
+                        "description": "Depense not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctumAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "sanctumAuth": {
+                "type": "apiKey",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    }
+}
